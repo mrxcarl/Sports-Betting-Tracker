@@ -6,20 +6,15 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 clear()
-
 # Define the CSV file to store the data
 CSV_FILE = 'sports_bets.csv'
-
-# User information
-USER_NAME = "Jason C. Klein"
-USER_EMAIL = "jasonklein1989@gmail.com"
 
 # Initialize CSV if it doesn't exist
 def initialize_csv():
     try:
         with open(CSV_FILE, mode='x', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['Date', 'Sport', 'Bet Amount', 'Result', 'Profit', 'User', 'Email'])
+            writer.writerow(['Date', 'Sport', 'Bet Amount', 'Result', 'Profit'])
     except FileExistsError:
         pass  # The file already exists, no need to reinitialize
 
@@ -29,7 +24,7 @@ def log_bet(sport, bet_amount, result):
     profit = bet_amount if result.lower() == 'win' else -bet_amount
     with open(CSV_FILE, mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([date, sport, bet_amount, result, profit, USER_NAME, USER_EMAIL])
+        writer.writerow([date, sport, bet_amount, result, profit])
 
 # Get a summary of the betting record
 def get_summary():
@@ -61,8 +56,7 @@ def main():
     initialize_csv()
 
     while True:
-        print(f"\nSports Betting Tracker - {USER_NAME}")
-        print(f"Contact: {USER_EMAIL}")
+        print("\nSports Betting Tracker")
         print("1. Log a new bet")
         print("2. Show summary")
         print("3. Exit")
