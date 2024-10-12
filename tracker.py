@@ -1,5 +1,11 @@
 import csv
 from datetime import datetime
+import os
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+clear()
 
 # Define the CSV file to store the data
 CSV_FILE = 'sports_bets.csv'
